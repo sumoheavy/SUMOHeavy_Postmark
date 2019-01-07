@@ -1,0 +1,2 @@
+config:
+  default/postmark/settings/enabled: 1

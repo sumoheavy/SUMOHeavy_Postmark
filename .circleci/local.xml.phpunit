@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The local.xml.phpunit for CI testing -->
+<config>
+    <global>
+        <resources>
+            <default_setup>
+                <connection>
+                    <dbname>circle_test</dbname>
+                </connection>
+            </default_setup>
+        </resources>
+        <!-- Assumes Magento Root Dir is two directories above where vendor is, as it would be with build/magento -->
+        <composer_vendor_path><![CDATA[{{root_dir}}/vendor]]></composer_vendor_path>
+    </global>
+    <default>
+        <web>
+            <seo>
+                <use_rewrites>1</use_rewrites>
+            </seo>
+            <secure>
+                <base_url>https://example.com</base_url>
+            </secure>
+            <unsecure>
+                <base_url>http://example.com</base_url>
+            </unsecure>
+            <url>
+                <redirect_to_base>0</redirect_to_base>
+            </url>
+        </web>
+    </default>
+    <phpunit>
+        <allow_same_db>1</allow_same_db>
+    </phpunit>
+</config>

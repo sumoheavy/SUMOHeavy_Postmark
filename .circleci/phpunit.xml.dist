@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpunit
+    convertErrorsToExceptions="true"
+    convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
+    stopOnError="false"
+    stopOnFailure="false"
+    stopOnIncomplete="false"
+    stopOnSkipped="false"
+    strict="true"
+    verbose="true"
+    timeoutForSmallTests="10"
+    bootstrap="app/code/community/EcomDev/PHPUnit/bootstrap.php">
+    <listeners>
+        <listener file="app/code/community/EcomDev/PHPUnit/Test/Listener.php" class="EcomDev_PHPUnit_Test_Listener"/>
+    </listeners>
+    <testsuite name="Magento Test Suite">
+        <file>app/code/community/EcomDev/PHPUnit/Test/Suite.php</file>
+    </testsuite>
+    <groups>
+        <include>
+            <group>SUMOHeavy_Postmark</group>
+        </include>
+    </groups>
+    <filter>
+        <blacklist>
+            <!-- Exclude Magento Core files from code coverage -->
+            <directory suffix=".php">app/code/core</directory>
+            <!-- Exclude EcomDev_PHPUnit classes from code coverage -->
+            <directory suffix=".php">app/code/community/EcomDev/PHPUnit</directory>
+            <directory suffix=".php">lib/EcomDev/Utils</directory>
+            <directory suffix=".php">lib/EcomDev/PHPUnit</directory>
+            <directory suffix=".php">lib/Spyc</directory>
+            <directory suffix=".php">lib/vfsStream</directory>
+            <!-- Exclude Mage.php file from code coverage -->
+            <file>app/Mage.php</file>
+            <!-- Exclude template files -->
+            <directory suffix=".phtml">app/design</directory>
+            <!-- Exclude Varien & Zend libraries -->
+            <directory suffix=".php">lib/Varien</directory>
+            <directory suffix=".php">lib/Zend</directory>
+            <directory suffix=".php">lib/Magento</directory>
+        </blacklist>
+        <whitelist>
+            <directory suffix=".php">app/code/community/SUMOHeavy/Postmark</directory>
+            <exclude>
+                <directory suffix=".php">app/code/community/SUMOHeavy/*/Test</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+    <logging>
+        <log type="coverage-html" target="var/phpunit/coverage" charset="UTF-8" highlight="true" lowUpperBound="35" highLowerBound="85"/>
+        <log type="coverage-clover" target="var/phpunit/coverage.xml"/>
+        <log type="junit" target="var/phpunit/junit.xml" logIncompleteSkipped="true"/>
+        <log type="tap" target="var/phpunit/testresults.tap"/>
+    </logging>
+</phpunit>
